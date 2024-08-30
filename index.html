@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Checker</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f7fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 20px;
+            color: green;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #3182ce;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            background-color: #3182ce;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2c5282;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            input, button {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            #result {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grade Checker</h1>
+        <p>Enter your marks to see your grade:</p>
+        <input type="number" id="marks" placeholder="Enter your marks" min="0" max="100" onkeypress="handleKeyPress(event)">
+        <button onclick="checkGrade()">Check Grade</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkGrade() {
+            let num = document.getElementById("marks").value;
+            let result = "";
+            let resultElement = document.getElementById("result");
+
+            if (num > 100 || num < 0) {
+                result = "Enter a valid number between 0 and 100";
+                resultElement.style.color = "red";
+            } else if (num >= 90) {
+                result = "You got AA";
+                resultElement.style.color = "green";
+            } else if (num >= 80) {
+                result = "You got A+";
+                resultElement.style.color = "green";
+            } else if (num >= 70) {
+                result = "You got A";
+                resultElement.style.color = "green";
+            } else if (num >= 60) {
+                result = "You got B";
+                resultElement.style.color = "green";
+            } else if (num >= 50) {
+                result = "You got C";
+                resultElement.style.color = "green";
+            } else if (num < 33) {
+                result = "You failed";
+                resultElement.style.color = "red";
+            } else {
+                result = "Invalid number";
+                resultElement.style.color = "red";
+            }
+
+            resultElement.textContent = result;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                checkGrade();
+            }
+        }
+    </script>
+</body>
+</html>
